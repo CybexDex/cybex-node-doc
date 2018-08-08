@@ -19,7 +19,7 @@ cli_wallet 是运行在本地的钱包，与 full node 相连，通过 wallet AP
 	from websocket import create_connection
 	import json
 	
-	ws = create_connection("ws:://127.0.0.1:&{port1}")
+	ws = create_connection("ws://127.0.0.1:&{port1}")
 	req = {"id":2, "method":"call", "params":[0, "unlock", ["123456"]]}
 	ws.send(json.dumps(req, sort_keys=True))
 	
