@@ -1,4 +1,4 @@
-## 账户操作 - wallet api
+## websocket 相关操作 - wallet api
 
 cli_wallet 是运行在本地的钱包，与 full node 相连，通过 wallet API 可很容易实现与链的交互；在需要签名的操作中，需要提前导入私钥。
 
@@ -246,6 +246,146 @@ cli_wallet 是运行在本地的钱包，与 full node 相连，通过 wallet AP
 `转出账户需要签名，执行转账操作前需要导入转出账户的私钥`
 
 
+#### 7. 挂单
+* 代码：
+
+		req = {"id":7, "method":"call", "params":[0, "sell_asset", ["cybex-dextest", "2008", "CYB", "0.9", "JADE.ETH", "1200", False, True]]}
+		ws.send(json.dumps(req, sort_keys=True))
+		print("return:\n" +ws.recv())
+
+* 参数：
+
+		seller_account: 发起挂单账户
+		amount_to_sell: 要换出资产数量
+		symbol_to_sell: 要换出资产代号或ID
+		min_to_receive: 期待最少换取资产数量
+		symbol_to_receive: 期待换入资产代码或ID
+		timeout_sec: 挂单的有效时长
+		fill_or_kill: bool 类型，若为true，订单只有被立即撮合才能上链，默认为 false
+		broadcast: bool 类型，是否全网广播
+
+* 返回
+
+		{
+			"id": 7,
+			"jsonrpc": "2.0",
+			"result": {
+				"ref_block_num": 57646,
+				"ref_block_prefix": 1025668429,
+				"expiration": "2018-08-07T08:49:45",
+				"operations": [
+					[1, {
+						"fee": {
+							"amount": 500,
+							"asset_id": "1.3.0"
+						},
+						"seller": "1.2.2766",
+						"amount_to_sell": {
+							"amount": 200800000,
+							"asset_id": "1.3.0"
+						},
+						"min_to_receive": {
+							"amount": 900000,
+							"asset_id": "1.3.18"
+						},
+						"expiration": "2018-08-07T09:09:05",
+						"fill_or_kill": false,
+						"extensions": []
+					}]
+				],
+				"extensions": [],
+				"signatures": ["2009155a492326e5dcfa15a1b293472088a205878b44e08052e1b9553d13ca21e71bf4d76ee0c54ea8df2ba2bb15e51c6b4ca979b142b22daaaed1568477f9f981"]
+			}
+		}
+
+#### 8. 撤单
+* 代码：
+
+		req = {"id":8, "method":"call", "params":[0, "cancel_order", ["1.7.1179", True]]}
+		ws.send(json.dumps(req, sort_keys=True))
+		print("return:\n" +ws.recv())
+
+* 参数：
+
+		order_id: 订单ID
+		broadcast: bool 类型，是否全网广播
+
+* 返回：
+
+		{
+			"id": 8,
+			"jsonrpc": "2.0",
+			"result": {
+				"ref_block_num": 57671,
+				"ref_block_prefix": 2979417314,
+				"expiration": "2018-08-07T08:53:10",
+				"operations": [
+					[2, {
+						"fee": {
+							"amount": 0,
+							"asset_id": "1.3.0"
+						},
+						"fee_paying_account": "1.2.2766",
+						"order": "1.7.1179",
+						"extensions": []
+					}]
+				],
+				"extensions": [],
+				"signatures": ["1f2e23d8d0a3e1c2d5e1366d4f780c7259ec064fa5c87ed6420ec1517c815edd5b75d37f24efa2581e963a469ba463b4042585d4098d21dcc826c6d8558e75b661"]
+			}
+		}
 		
+#### 9. 查询限价单
+* 代码：
+
+	    req = {"id":9, "method":"call", "params":[0, "get_limit_orders", ["CYB", "JADE.ETH", 1]]}
+	    ws.send(json.dumps(req, sort_keys=True))
+	    print("return:\n" +ws.recv())
+
+* 参数：
+
+		a: 换出资产ID
+		b: 换入资产ID 
+		limit: 返回限价单个数
+
+* 返回：
+
+		{
+			"id": 9,
+			"jsonrpc": "2.0",
+			"result": [{
+				"id": "1.7.1180",
+				"expiration": "2018-08-07T09:19:57",
+				"seller": "1.2.2766",
+				"for_sale": 200800000,
+				"sell_price": {
+					"base": {
+						"amount": 200800000,
+						"asset_id": "1.3.0"
+					},
+					"quote": {
+						"amount": 900000,
+						"asset_id": "1.3.18"
+					}
+				},
+				"deferred_fee": 500
+			}, {
+				"id": "1.7.1168",
+				"expiration": "2023-07-27T07:08:04",
+				"seller": "1.2.38",
+				"for_sale": 442,
+				"sell_price": {
+					"base": {
+						"amount": 442,
+						"asset_id": "1.3.18"
+					},
+					"quote": {
+						"amount": 100000,
+						"asset_id": "1.3.0"
+					}
+				},
+				"deferred_fee": 500
+			}]
+		}
 
 `* 所有的调用都是 json 格式，返回的也是 json 格式`
