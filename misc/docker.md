@@ -15,7 +15,9 @@ docker network create \
 ```
 the start script shoule be changed to:
 ```
-docker run -it --cap-add=ALL --network=bridge -v  /etc/localtime:/etc/localtime:ro -v "/bigdata/home/sunqi/Docker//cybex-docker/mnt/data-dir$1":/data-dir -v /bigdata/home/sunqi/Docker/cybex-docker:/mnt  --name "node$1"  -h  "node$1"  witness_node:v2
+port=`expr $1  + 38090 `
+
+docker run -it --cap-add=ALL --network=bridge -p $port:8080 -v  /etc/localtime:/etc/localtime:ro -v "/bigdata/home/sunqi/Docker//cybex-docker/mnt/data-dir$1":/data-dir -v /bigdata/home/sunqi/Docker/cybex-docker:/mnt  --name "node$1"  -h  "node$1"  witness_node:v2
 ```
 
 # 简单启动 docker
