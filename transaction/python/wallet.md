@@ -23,6 +23,7 @@ assert not instance.wallet.locked()
 ```
 
 #### 3. 向钱包导入私钥
+导入私钥时，若钱包内已有此私钥，会抛出异常。
 ```Python
 import cybex
 
@@ -36,6 +37,7 @@ instance.wallet.addPrivateKey(PRIVATE_KEY)
 ```
 
 #### 4. 查看钱包中的账户
+此方法用钱包中包含的私钥，计算对应的公钥，使用公钥在节点查询与此公钥关联的所有账户。
 ```Python
 import cybex
 
