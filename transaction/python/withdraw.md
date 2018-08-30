@@ -25,5 +25,7 @@ instance = cybex.Cybex(NODE_URL)
 instance.wallet.unlock(WALLET_PWD)
 
 # 不同资产使用不同的目标地址作为提现地址
-instance.withdraw(to_addr, 10, 'asset name', 'withdraw-account-name')
+# asset-name为您希望提现的资产名字，请使用JADE.作为资产前缀，如JADE.ETH
+# withdraw-account-name为您在赛贝交易所的账号名
+instance.withdraw(to_addr, 10, 'asset-name', 'withdraw-account-name')
 ```
