@@ -1,7 +1,7 @@
 ## 报单相关操作
 报单操作可以向赛贝去中心化交易所发送订单。在赛贝中，一个交易市场由两种资产组成，用户报单即提交订单，付出一些资产A，期望获得一些资产B的行为。
 为了方便用户理解，赛贝交易所的常用客户端没有采用资产交换的方式来表示订单和价格，而是采用与传统交易所相似的价格+数量的方式，Python库也使用这种模式报单，本demo会同时在注释中说明报单的实际资产交换值。
-报单操作前，需要将报单账户的私钥提前加入Python库的本地钱包中，并解锁钱包。钱包操作详见[钱包操作](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/wallet.md)
+报单操作前，需要将报单账户的私钥提前加入Python库的本地钱包中，并解锁钱包。钱包操作详见[钱包操作](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/wallet.md)。
 赛贝交易所的资产由瑶池(JADE)托管，所有由瑶池托管的资产以JADE.作为资产前缀，比如以太坊的资产名为JADE.ETH，此外还有JADE.EOS, JADE.BTC, JADE.USDT等。赛贝的网页前端为了照顾用户使用习惯，在显示时去除了JADE前缀，在使用Python库时，资产名需要加JADE.前缀。
 
 #### 1. 买卖单
@@ -42,4 +42,18 @@ FOK即fill or kill，当且仅当该订单可以被立刻完全撮合时，才�
 在上例中，若killfill为True，表示该订单是FOK单.例如：
 ```Python
 m.sell(1200, 1, 3600, killfill = True, account = 'seller-account')
+```
+#### 3. 撤单
+用户可以通过[Account接口](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/account.md)查询当前的挂单，并通过订单id完成撤单操作。
+```Python
+import cybex
+
+NODE_URL = 'ws://127.0.0.1:8090'
+WALLET_PWD = '123456'
+
+instance = cybex.Cybex(NODE_URL)
+instance.wallet.unlock(WALLET_PWD)
+
+# 通过account.openorders接口获取订单id
+instance.cancel(order_id, account = 'seller-account')
 ```

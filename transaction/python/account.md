@@ -41,6 +41,8 @@ for bal in account.balances:
 # 2.用户在交易市场中，期望以0.02 JADE.ETH/JADE.EOS的价格卖出10个JADE.EOS，
 #   则base为JADE.EOS，quote为JADE.ETH，price为50
 for order in account.openorders:
+    # 订单id
+    print(order['id'])
     # 出售的资产名
     print(order['base'].symbol)
     # 出售的资产数量
