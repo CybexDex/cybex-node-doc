@@ -18,7 +18,7 @@ instance.transfer('to-account', 10, 'CYB', 'memo string', 'from-account')
 
 #### 2. 锁定期资产转账
 锁定期资产为带有锁定期的资产，发送方发送锁定期资产后，相应资产立刻从发送方账户中扣除，在发送方指定的锁定时间到期后，接收方可以申领这笔锁定期资产。
-锁定期资产与接收方的公钥关联，只有该公钥对应的私钥持有者，才能申领该锁定期资产。
+锁定期资产与接收方的公钥关联，只有该公钥对应的私钥持有者，才能申领该锁定期资产。锁定期资产的申领操作详见[资产操作](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/balance.md)
 ```Python
 import cybex
 
