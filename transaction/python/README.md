@@ -12,8 +12,9 @@
 * 然后  
 [创建钱包](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/wallet.md)
 * 在创建完钱包后，您可以尝试  
-[获取账号相关的信息](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/account.md)
-[获取资产相关信息](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/asset.md)
+[获取账号信息](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/account.md)  
+[获取资产信息](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/asset.md)  
+[获取行情信息](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/market.md)  
 * 并且在交易市场中  
 [下单](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/order.md)
 * 如果您控制了多个账号，可以通过以下接口进行cybex场内的转账  
