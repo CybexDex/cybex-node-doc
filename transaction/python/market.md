@@ -58,4 +58,37 @@ for bid_orders in order_book['bids']:
     print(ask_order['quote'].amount)
     # 买单中，出售base资产的数量
     print(ask_order['base'].amount)
+
+##### 获取K线 #####
+# 赛贝是一个全球部署的去中心化交易所，系统使用UTC时间，
+# 获取K线需要使用UTC时间
+# 以下例子获取开始时间在UTC时间2018-08-31日，5:59:00到6:01:00之间的3600秒k线，
+# 将会返回UTC时间2018-08-31 06:00:00的小时K线
+from datetime import datetime
+start = datetime.strptime('2018-08-31 05:59:00', '%Y-%m-%d %H:%M:%S')
+end = datetime.strptime('2018-08-31 06:01:00', '%Y-%m-%d %H:%M:%S')
+
+# 返回一个kline的序列，所有开始时间在start到end之间的K线
+# 如果在某个时间段内没有成交，则对应的K线不存在，也不会返回。
+kline_arr = market.get_market_history(3600, start, end)
+kline = kline_arr[0]
+
+# 开盘价格
+print(float(kline['openPrice']))
+# 收盘价格
+print(float(kline['closePrice']))
+# 最高价格
+print(float(kline['highPrice']))
+# 最低价格
+print(float(kline['lowPrice']))
+
+# 开盘成交中，base资产的数量
+openBase = kline['openBaseVolume'] / 10 ** kline['openBaseVolume'].asset['precision']
+print(openBase.asset['symbol'], float(openBase))
+
+# 开盘成交中，quote资产的数量
+openQuote = kline['openQuoteVolume'] / 10 ** kline['openQuoteVolume'].asset['precision']
+print(openQuote.asset['symbol'], float(openQuote))
+
+# 依上例可获取openBase, openQuote, closeBase, closeQuote, highBase, highQuote, lowBase, lowQuote
 ```
