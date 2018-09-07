@@ -21,7 +21,9 @@
 [转账](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/transfer.md)
 * 如果您是跨市场交易者，您可以使用以下接口进行跨市场的资产转移  
 [提现](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/withdraw.md)
-* 如果您是cybex交易所的早期支持者，您所持有的锁定期资产可以在到期后通过以下方式认领  
+* 如果您持有锁定期资产，可以在到期后通过以下方式认领  
 [申领资产](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/balance.md)
+* 更多高级操作
+[高级操作](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/advanced)
 
 #### 祝您交易愉快
