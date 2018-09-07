@@ -23,7 +23,7 @@
 [提现](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/withdraw.md)
 * 如果您持有锁定期资产，可以在到期后通过以下方式认领  
 [申领资产](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/balance.md)
-* 更多高级操作
+* 更多高级操作  
 [高级操作](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/advanced)
 
 #### 祝您交易愉快
