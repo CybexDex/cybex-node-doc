@@ -157,44 +157,4 @@ example：
 ./programs/delayed_node/delayed_node --trusted-node="192.168.0.100:8090" --rpc-endpoint="192.168.0.101:8090" -d delayed_node -s "0.0.0.0:0"  --p2p-endpoint="0.0.0.0:0" --seed-nodes "[]"
 ```
 note: 信任节点应该在delayed节点之前启动
-
-## 源码编译cybex节点
-### linux环境
-* prepare dependencies
-```
-sudo apt-get update
-sudo apt-get install autoconf cmake git libboost-all-dev libssl-dev
-```
-
-* download source code
-```
-git clone https://github.com/bitshares/bitshares-core.git
-cd bitshares-core
-git checkout <LATEST_RELEASE_TAG>
-git submodule update --init --recursive
-```
-
-* build
-```
-mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
-make -j4
-```
-
-### mac环境
-1. get source code similar with linux
-2. install openssl, boost via brew
-```
-brew install git
-brew install openssl
-brew install boost
-brew install autoconf
-```
-3. build
-```
-mkdir biuld
-cd build
-cmake .. -DOPENSSL_ROOT_DIR=/usr/local/Cellar/openssl/1.0.2o_2/ -DCMAKE_BUILD_TYPE=RelWithDebInfo
-make -j40
-```
+``
