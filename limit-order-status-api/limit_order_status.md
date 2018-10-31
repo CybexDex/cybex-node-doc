@@ -73,8 +73,31 @@ limit_order_status API可以用来查看用户的历史订单状态。在区块�
  "id": $callid
 } 
 ```
+#### 7.查询结果
+以上查询会以json格式返回，返回json格式转换为字典类型后，其result对象为数据列表，列表中每个元素格式如下
+```json
+{
+    "id": "7.0.xxxxxx", # 对象id
+    "order_id": "1.7.xxxxx", # 订单号
+    "seller": "1.2.xxxxx", # 用户账号
+    "key": {
+        "asset1": "1.3.x", # 交易市场
+        "asset2": "1.3.x"
+    },
+    "is_sell": true, # true表示此订单为出售asset1， false表示此订单为出售asset2
+    "amount_to_sell": 100, # 下单时请求出售资产的数量
+    "min_to_receive": 200, # 下单时希望获取资产的数量
+    "sold": 50, # 已经出售的资产数量
+    "received": 100, # 已经购得的资产数量
+    "canceled": 50, # 撤单时尚未完全出售的资产数量
+    "block_num": xxxxxx, # 创建订单的交易所在区块号
+    "trx_in_blk": xx, # 创建订单的交易在区块中的交易编号
+    "op_in_trx": xx, # 创建订单的操作在交易中的操作编号
+    "create_time": "YYYY-mm-ddTHH:MM:SS" # 创建订单的交易所在区块的时间戳
+}
+```
 
-#### 7.根据时间查询订单号
+#### 8.根据时间查询订单号
 此查询会返回在用户指定时间戳之前的最大订单号，系统采用UTC时间格式
 ```json
 {
