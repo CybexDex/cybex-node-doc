@@ -9,3 +9,11 @@ cd venv
 source bin/activate
 pip install PyCybex
 ```
+Windows使用virtualenv运行PyCybex
+```Bash
+pip install virtualenv
+virtualenv --no-site-packages venv
+cd venv/Scripts
+activate
+pip install PyCybex
+```
