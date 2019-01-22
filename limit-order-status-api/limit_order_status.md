@@ -97,7 +97,8 @@ limit_order_status API可以用来查看用户的历史订单状态。在区块�
 {
  "method": "call",
  "params": [
-    $limit_order_status_api_id, "get_filtered_limit_order_status",
+    $limit_order_status_api_id,
+    "get_filtered_limit_order_status",
     [
       "1.2.xxxxx",
       "1.7.xxxxxxxx",
