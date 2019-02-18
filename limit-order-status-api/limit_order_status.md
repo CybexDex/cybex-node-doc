@@ -82,7 +82,7 @@ limit_order_status API可以用来查看用户的历史订单状态。在区块�
  "method":"call",
  "params": [
     $limit_order_status_api_id,
-    "set_filter_market",
+    "add_filtered_market",
     [[
         ["1.3.0", "1.3.2"],
         ["1.3.2", "1.3.27"]
