@@ -4,5 +4,5 @@
 [账号](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/account.md)  
 [资产](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/asset.md)  
 [订单](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/limit_order.md)  
-[持仓](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/account_balance.md)
+[持仓](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/account_balance.md)  
 [锁仓](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/htlc.md)
