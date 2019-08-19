@@ -370,3 +370,301 @@ wscat -c wss://hongkong.cybex.io
   < ...
 ```
 * 结果为需要签名的私钥对应的公钥列表。若传入的交易体已经包含了签名，则返回仍然需要签名的私钥对应的公钥。
+
+### get_potential_signatures
+* 查询可能签名交易的公钥
+* 参数: 未签名的交易体
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_potential_signatures", "params": [{"ref_block_num":12775,"ref_block_prefix":2748496443,"expiration":"2019-07-24T02:15:39","operations":[[0,{"fee":{"amount":100,"asset_id":"1.3.0"},"from":"1.2.100","to":"1.2.200","amount":{"asset_id": "1.3.0", "amount": 100000},"extensions":[]}]],"extensions":[],"signatures":[]}], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_potential_signatures", [{"ref_block_num":12775,"ref_block_prefix":2748496443,"expiration":"2019-07-24T02:15:39","operations":[[0,{"fee":{"amount":100,"asset_id":"1.3.0"},"from":"1.2.100","to":"1.2.200","amount":{"asset_id": "1.3.0", "amount": 100000},"extensions":[]}]],"extensions":[],"signatures":[]}]], "id": 2}
+  < ...
+```
+* 返回公钥列表，列表中的每个公钥均为可能签名交易的公钥。对于普通单私钥账户，只需要返回公钥中任意一个对应的私钥签名即可。对于多签账户，使用哪些私钥签名需要结合账号权限设置进行判断。
+
+### verify_authority
+* 验证交易签名权限是否满足
+* 参数: 签名后的交易体
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "verify_authority", "params": [{"ref_block_num":12775,"ref_block_prefix":2748496443,"expiration":"2019-07-24T02:15:39","operations":[[56,{"fee":{"amount":100,"asset_id":"1.3.0"},"from":"1.2.100","to":"1.2.200","amount":{"asset_id": "1.3.0", "amount": 100000},"extensions":[]}]],"extensions":[],"signatures":["1f1820116d748f266a345f5d6b6ab3e28921395624f21af0509d9c98fb27fca24c344a5062d441ef3b4f8107319a0b9cdb977fa6c7ba589c07926c87f1eb0cdc44"]}], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "verify_authority", [{"ref_block_num":12775,"ref_block_prefix":2748496443,"expiration":"2019-07-24T02:15:39","operations":[[56,{"fee":{"amount":100,"asset_id":"1.3.0"},"from":"1.2.100","to":"1.2.200","amount":{"asset_id": "1.3.0", "amount": 100000},"extensions":[]}]],"extensions":[],"signatures":["1f1820116d748f266a345f5d6b6ab3e28921395624f21af0509d9c98fb27fca24c344a5062d441ef3b4f8107319a0b9cdb977fa6c7ba589c07926c87f1eb0cdc44"]}]], "id": 2}
+  < ...
+```
+* 若满足要求，则返回true，否则，api返回异常。
+
+### validate_transaction
+* 验证交易是否能上链。与verify_authority不同的是，validate_transaction不仅验证签名是否满足要求，还验证执行交易需要的条件是否满足，例如转账操作的余额是否足够、下单是否满足fok条件，交易体是否重复等。全节点接受请求后，会基于其当前状态执行一遍交易，并获取交易执行结果。执行完后会恢复现场到执行前状态。
+* 参数: 签名后的交易体
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "validate_transaction", "params": [{"ref_block_num":12775,"ref_block_prefix":2748496443,"expiration":"2019-07-24T02:15:39","operations":[[0,{"fee":{"amount":100,"asset_id":"1.3.0"},"from":"1.2.100","to":"1.2.200","amount":{"asset_id": "1.3.0", "amount": 100000},"extensions":[]}]],"extensions":[],"signatures":["1f1820116d748f266a345f5d6b6ab3e28921395624f21af0509d9c98fb27fca24c344a5062d441ef3b4f8107319a0b9cdb977fa6c7ba589c07926c87f1eb0cdc44"]}], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "validate_transaction", [{"ref_block_num":12775,"ref_block_prefix":2748496443,"expiration":"2019-07-24T02:15:39","operations":[[0,{"fee":{"amount":100,"asset_id":"1.3.0"},"from":"1.2.100","to":"1.2.200","amount":{"asset_id": "1.3.0", "amount": 100000},"extensions":[]}]],"extensions":[],"signatures":["1f1820116d748f266a345f5d6b6ab3e28921395624f21af0509d9c98fb27fca24c344a5062d441ef3b4f8107319a0b9cdb977fa6c7ba589c07926c87f1eb0cdc44"]}]], "id": 2}
+  < ...
+```
+* 若交易可以执行，则返回执行结果，否则，api返回异常。
+
+### get_required_fees
+* 获取操作所需要的最低手续费。
+* 参数: 操作列表，手续费资产
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_required_fees", "params": [[[0,{"fee":{"amount":0,"asset_id":"1.3.0"},"from":"1.2.100","to":"1.2.200","amount":{"asset_id": "1.3.0", "amount": 100000},"extensions":[]}]], "1.3.27"], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_required_fees", [[[0,{"fee":{"amount":0,"asset_id":"1.3.0"},"from":"1.2.100","to":"1.2.200","amount":{"asset_id": "1.3.0", "amount": 100000},"extensions":[]}]], "1.3.27"]], "id": 2}
+  < ...
+```
+* 返回手续费金额列表，列表中每一项对应参数的操作列表中的项。
+## 公钥
+### get_key_references
+* 获取某个公钥所有关联的账户，当公钥同时出现在账户的active和owner权限中时，会返回两次相同的账号id。
+* 参数: 公钥列表
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_key_references", "params": [["CYB79urmnmMH5GKxxRXNhxRfMsEgqodHCrnxK6HxzpSA1F3J7MKDE"]], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_key_references", [["CYB79urmnmMH5GKxxRXNhxRfMsEgqodHCrnxK6HxzpSA1F3J7MKDE"]]], "id": 2}
+  < ...
+```
+* 返回结果为数组，数组中的每一项对应参数中的一个公钥的引用账号列表。
+
+### is_public_key_registered
+* 判断公钥是否已经被注册
+* 参数: 公钥
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "is_public_key_registered", "params": ["CYB79urmnmMH5GKxxRXNhxRfMsEgqodHCrnxK6HxzpSA1F3J7MKDE"], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "is_public_key_registered", ["CYB79urmnmMH5GKxxRXNhxRfMsEgqodHCrnxK6HxzpSA1F3J7MKDE"]], "id": 2}
+  < ...
+```
+* 返回true或false
+
+## 拟议交易
+### get_proposed_transactions
+* 获取某个账号需要批准的拟议交易。
+* 参数: 账号id
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_proposed_transactions", "params": ["1.2.0"], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_proposed_transactions", ["1.2.0"]], "id": 2}
+  < ...
+```
+* proposal列表
+
+## 区块和交易
+### get_block_header
+* 使用区块号获取区块头结构
+* 参数: 区块号
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_block_header", "params": [100000], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_block_header", [100000]], "id": 2}
+  < ...
+```
+* 返回结果字段如下
+
+字段名|类型|含义
+---|---|---
+previous|字符串|前一个区块的id
+timestamp|时间戳|区块打包时间
+witness|打包人id|打包人
+transaction_merkle_root|哈希值|交易体的merkle哈希值
+
+### get_block_header_batch
+* 使用区块号批量获取多个区块头信息
+* 参数: 区块号列表
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_block_header_batch", "params": [[100, 1000, 10000]], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_block_header_batch", [[100, 1000, 10000]]], "id": 2}
+  < ...
+```
+* 返回结果为区块头信息列表，列表中的每一项是一个二元组，为[区块号,区块头],其中区块头字段同get_block。
+
+### get_block
+* 使用区块号获取区块信息
+* 参数: 区块号
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_block", "params": [100000], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_block", [100000]], "id": 2}
+  < ...
+```
+* 返回结果字段如下
+
+字段名|类型|含义
+---|---|---
+previous|字符串|前一个区块的id
+timestamp|时间戳|区块打包时间
+witness|打包人id|打包人
+transaction_merkle_root|哈希值|交易体的merkle哈希值
+witness_signature|哈希值|打包人区块签名
+transactions|数组|区块中包含的交易数组
+
+### get_transaction
+* 使用区块号和交易号获取某个交易。对于已经打包完成的区块，区块号和交易号是交易的唯一索引。
+* 参数:  区块号，交易号
+* Http请求例子
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_transaction", "params": [1000000, 1], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_transaction", [10000000, 1]], "id": 2}
+  < ...
+```
+* 返回交易体
+
+## 全局参数
+### get_chain_properties
+* 获取链的不可变参数，不可变参数由创世区块文件指定，在链的生命周期中不可被改变。
+* 参数: 无
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_chain_properties", "params": [], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_chain_properties", []], "id": 2}
+  < ...
+```
+### get_global_properties
+* 获取链的可变参数，可变参数可以由理事会成员通过投票进行调整
+* 参数: 无
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_global_properties", "params": [], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_global_properties", []], "id": 2}
+  < ...
+```
+### get_config
+* 获取链的静态参数，静态参数在代码中指定，通常用于限制一些交易中的变量，如帐户名长度，资产名称长度等。
+* 参数: 无
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_config", "params": [], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_config", []], "id": 2}
+  < ...
+```
+### get_chain_id
+* 获取链的id
+* 参数: 无
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_chain_id", "params": [], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_chain_id", []], "id": 2}
+  < ...
+```
+### get_dynamic_global_properties
+* 获取链的动态参数，动态参数通常跟随最新区块变动，如最新区块高度、最新区块打包人等
+* 参数: 无
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_dynamic_global_properties", "params": [], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_dynamic_global_properties", []], "id": 2}
+  < ...
+```
+* 返回结果字段如下  
+
+字段名|类型|含义
+---|---|---
+head_block_number|整数|最新区块高度
+head_block_id|哈希值|最新区块id
+time|时间戳|最新区块时间
+current_witness|打包人id|最新区块的打包人
+next_maintenance_time|时间戳|下一次维护时间
+last_budget_time|时间戳|上一次维护结束时间
+witness_budget|整数|本维护期内尚未分配的打包人收益
+accounts_registered_this_interval|整数|本维护期内新注册账户数量
+recently_missed_count|整数|当前节点当前未收到的区块数量
+current_aslot|整数|从创世区块的时间开始的block槽数量
+dynamic_flags|整数|当前仅使用最低位，当进入维护状态时，置最低位为1
+last_irreversible_block_num|整数|当前不可逆区块高度
