@@ -97,13 +97,13 @@ wscat -c wss://hongkong.cybex.io
     + [get_dynamic_global_properties](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_dynamic_global_properties):获取链的动态参数
 * History API
   + [账号操作历史](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#查询账号操作历史)
-    + [get_account_history](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#):查询账号历史记录
-    + [get_account_history_operations](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#):查询账号指定操作的历史记录
-    + [get_account_history_by_operations](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#):使用账号操作顺序查询指定操作的账号操作历史
-    + [get_relative_account_history](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#):使用账号操作顺序查询账号操作历史
+    + [get_account_history](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#get_account_history):查询账号历史记录
+    + [get_account_history_operations](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#get_account_history_operations):查询账号指定操作的历史记录
+    + [get_account_history_by_operations](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#get_account_history_by_operations):使用账号操作顺序查询指定操作的账号操作历史
+    + [get_relative_account_history](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#get_relative_account_history):使用账号操作顺序查询账号操作历史
   + [历史行情](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#查询行情历史)
-    + [get_market_history_buckets](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#):查询节点支持的K线种类
-    + [get_market_history](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#):查询K线
-    + [get_fill_order_history](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#):查询成交明细
+    + [get_market_history_buckets](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#get_market_history_buckets):查询节点支持的K线种类
+    + [get_market_history](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#get_market_history):查询K线
+    + [get_fill_order_history](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#get_fill_order_history):查询成交明细
 
 #### 祝您交易愉快
