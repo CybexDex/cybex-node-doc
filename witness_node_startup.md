@@ -109,3 +109,17 @@ snapshot
 ```bash
 ./witness_node -d data/ --rpc-endpoint 0.0.0.0:8090 --seed-node 1.1.1.1:5000 --seed-nodes "[\"2.2.2.2:5000\",\"3.3.3.3:5000\"]" --genesis-json genesis.json --plugins "witness snapshot" --snapshot-at-time "2020-01-01T00:00:00" --snapshot-to "20200101000000.snapshot"
 ```
+
+## 币龄插件
+币龄插件用于统计账号的币龄
+### 插件名
+token_age
+### 插件参数
+* track-asset: 统计的资产类型，若多次指定，则表示统计多个资产的币龄
+* stat-period: 更新周期，以秒为单位
+* aging-percent: 每次更新时，旧币龄的折旧因子,以10000为分母，即9000表示折旧为90%
+
+### 命令行启动方式
+```bash
+./witness_node -d data/ --rpc-endpoint 0.0.0.0:8090 --seed-node 1.1.1.1:5000 --seed-nodes "[\"2.2.2.2:5000\",\"3.3.3.3:5000\"]" --genesis-json genesis.json --plugins "witness token_age" --track-asset "1.3.0" --stat-period 86400 --aging-percent 9750
+```

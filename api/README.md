@@ -8,12 +8,6 @@
 * apihk.cybex.io
 * normal-hongkong.cybex.io
 
-## 索引
-* 账号、资产、订单簿、币龄 [Database API]()
-* K线、账号操作历史、成交历史 [History API]()
-* 订单历史 [Limit Order Status API]()
-* 资产持仓排名、持仓明细 [Asset API]()
-
 ## API调用方式举例
 ### Http方式
 Http方式仅能访问Database API。
@@ -50,7 +44,7 @@ wscat -c wss://hongkong.cybex.io
 ```
 
 ## 索引
-* Database API
+* Database API -- 账号、资产、订单簿、币龄
   + [通用](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#通用)
     + [get_objects](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_objects):使用对象id查询对象
   + [账户](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#账户)
@@ -61,6 +55,7 @@ wscat -c wss://hongkong.cybex.io
     + [lookup_account_names](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#lookup_account_names):通过账号名批量查询账号
     + [lookup_accounts](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#lookup_accounts):列出账号名
     + [get_account_count](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_account_count):查询全网账号总数
+    + [get_account_token_age](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_account_token_age):查询币龄
   + [资产](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#资产)
     + [get_assets](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_assets):使用资产id批量查询资产
     + [list_assets](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#list_assets):根据字典序列出资产
@@ -95,7 +90,7 @@ wscat -c wss://hongkong.cybex.io
     + [get_config](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_config):获取静态配置参数
     + [get_chain_id](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_chain_id):获取链id
     + [get_dynamic_global_properties](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_dynamic_global_properties):获取链的动态参数
-* History API
+* History API -- K线、账号操作历史、成交历史
   + [账号操作历史](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#查询账号操作历史)
     + [get_account_history](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#get_account_history):查询账号历史记录
     + [get_account_history_operations](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#get_account_history_operations):查询账号指定操作的历史记录

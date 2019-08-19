@@ -138,6 +138,24 @@ wscat -c wss://hongkong.cybex.io
 ```
 * 返回整数
 
+### get_account_token_age
+* 查询账户币龄，需要被访问节点打开[币龄插件](https://github.com/CybexDex/cybex-node-doc/blob/master/witness_node_startup.md#币龄插件)
+* 参数: 账号id
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_account_token_age", "params": ["1.2.100"], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_account_token_age", ["1.2.100"]], "id": 2}
+  < ...
+```
+* 返回列表，列表为节点配置的所有币种的币龄，其中CYB的币龄在获取到数据的基础上，除以40再除以100000即为前端显示的币龄。
+
+
 ## 资产
 ### get_assets
 * 使用资产id批量查询资产  
@@ -209,7 +227,7 @@ wscat -c wss://hongkong.cybex.io
 * 返回[订单结构](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/limit_order.md)数组，数组分为两部分，分别是出售资产1求购资产2的订单，求购资产1出售资产2的订单。在每部分中，价格更优的排在前，可参考[排序规则](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/limit_order.md)。每部分最多返回N个订单。
 
 ### get_ticker
-* 查询最新行情。使用此API需要被访问节点开启[行情历史](https://github.com/CybexDex/cybex-node-doc/blob/master/witness_node_startup.md)插件。  
+* 查询最新行情。使用此API需要被访问节点开启[行情历史插件](https://github.com/CybexDex/cybex-node-doc/blob/master/witness_node_startup.md#行情历史插件)。  
 * 参数: 资产1的id或资产1的符号,资产2的id或资产2的符号  
 * Http请求例子  
 ```Bash
@@ -294,7 +312,7 @@ bids|数组|买单队列，求购quote资产的订单，价格高的买单排在
 每个订单:quote|浮点数|quote资产尚未成交的数量
 
 ### get_trade_history
-* 查询指定交易对的历史成交记录。使用此API需要被访问节点开启[行情历史](https://github.com/CybexDex/cybex-node-doc/blob/master/witness_node_startup.md)插件。  
+* 查询指定交易对的历史成交记录。使用此API需要被访问节点开启[行情历史插件](https://github.com/CybexDex/cybex-node-doc/blob/master/witness_node_startup.md#行情历史插件)。  
 * 参数: 资产1的id或资产1的符号，资产2的id或资产2的符号，开始时间，结束时间，最大返回记录条数。  
 * 参数含义: 返回资产1和资产2的历史成交，从小于等于开始时间的第一条成交记录开始，按时间倒序取成交记录，直到获取到结束时间的成交记录或记录条数达到最大值。  
 * Http请求例子  
@@ -322,7 +340,7 @@ side1_account_id|账号id|成交中maker一方的账号id
 side2_account_id|账号id|成交中taker一方的账号id
   
 ### get_trade_history_by_sequence
-* 使用上面的get_trade_history查询成交记录时，如果同一时刻有多个成交记录，会导致很难完全遍历，此时，可以使用本api对成交记录进行遍历。使用此API需要被访问节点开启[行情历史](https://github.com/CybexDex/cybex-node-doc/blob/master/witness_node_startup.md)插件。本API与get_trade_history的区别在于遍历的开始时间被替换成遍历的开始id号。  
+* 使用上面的get_trade_history查询成交记录时，如果同一时刻有多个成交记录，会导致很难完全遍历，此时，可以使用本api对成交记录进行遍历。使用此API需要被访问节点开启[行情历史插件](https://github.com/CybexDex/cybex-node-doc/blob/master/witness_node_startup.md#行情历史插件)。本API与get_trade_history的区别在于遍历的开始时间被替换成遍历的开始id号。  
 * 参数: 资产1的id或资产1的符号，资产2的id或资产2的符号，开始id，结束时间，最大返回记录条数。  
 * Http请求例子  
 ```Bash
