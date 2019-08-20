@@ -664,6 +664,77 @@ wscat -c wss://hongkong.cybex.io
   < ...
 ```
 
+## 理事会成员
+### get_committee_members
+* 批量查询理事会成员信息
+* 参数: 理事会成员id列表
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_committee_members", "params": [["1.5.1", "1.5.2"]], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_committee_members", [["1.5.1", "1.5.2"]]], "id": 2}
+  < ...
+```
+* 返回[理事会成员](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/committee_member.md)数组
+
+### get_committee_member_by_account
+* 查询账号创建的理事会成员
+* 参数: 账号id
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_committee_member_by_account", "params": ["1.2.7"], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_committee_member_by_account", ["1.2.7"]], "id": 2}
+  < ...
+```
+* 返回[理事会成员](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/committee_member.md)结构
+
+### lookup_committee_member_accounts
+* 字段序列出理事会成员账号
+* 参数: 起始字符串，数量
+* 在节点所有已创建的理事会成员中，按创建账号的账号名排序，获取大于等于起始字符串的给定数量个理事会成员的id。
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "lookup_committee_member_accounts", "params": ["a", 10], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "lookup_committee_member_accounts", ["a", 10]], "id": 2}
+  < ...
+```
+* 返回数组，每个元素是一个二元组，分别为[账号名,理事会成员id]
+
+### get_committee_count
+* 获取理事会成员数量
+* 包含活跃理事会成员和非活跃理事会成员
+* 参数: 无
+* 参数:
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_committee_count", "params": [], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_committee_count", []], "id": 2}
+  < ...
+```
+
 ## 全局参数
 ### get_chain_properties
 * 获取链的不可变参数，不可变参数由创世区块文件指定，在链的生命周期中不可被改变。

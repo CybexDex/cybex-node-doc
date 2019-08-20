@@ -89,6 +89,11 @@ wscat -c wss://hongkong.cybex.io
     + [get_witness_by_account](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_witness_by_account):查询账号创建的见证人
     + [lookup_witness_accounts](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#lookup_witness_accounts):列出见证人
     + [get_witness_count](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_witness_count):获取见证人数量
+  + [理事会成员](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#理事会成员)
+    + [get_committee_members](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_committee_members):批量查询理事会成员
+    + [get_committee_member_by_account](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_committee_member_by_account):查询账号创建的理事会成员
+    + [lookup_committee_member_accounts](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#lookup_committee_member_accounts):列出理事会成员
+    + [get_committee_count](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_committee_count):获取理事会成员数量
   + [全局参数](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#全局参数)
     + [get_chain_properties](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_chain_properties):获取链的不可变参数
     + [get_global_properties](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_global_properties):获取链的可变参数
