@@ -84,6 +84,11 @@ wscat -c wss://hongkong.cybex.io
     + [get_block_header_batch](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_block_header_batch):批量获取区块头
     + [get_block](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_block):获取区块
     + [get_transaction](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_transaction):获取交易
+  + [见证人](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#见证人)
+    + [get_witnesses](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_witnesses):批量查询见证人
+    + [get_witness_by_account](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_witness_by_account):查询账号创建的见证人
+    + [lookup_witness_accounts](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#lookup_witness_accounts):列出见证人
+    + [get_witness_count](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_witness_count):获取见证人数量
   + [全局参数](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#全局参数)
     + [get_chain_properties](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_chain_properties):获取链的不可变参数
     + [get_global_properties](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_global_properties):获取链的可变参数

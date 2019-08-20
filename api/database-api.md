@@ -594,6 +594,76 @@ wscat -c wss://hongkong.cybex.io
 ```
 * 返回交易体
 
+## 见证人
+### get_witnesses
+* 批量查询见证人信息
+* 参数: 见证人id列表
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_witnesses", "params": [["1.6.1", "1.6.2"]], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_witnesses", [["1.6.1", "1.6.2"]]], "id": 2}
+  < ...
+```
+* 返回[见证人](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/witness.md)数组
+
+### get_witness_by_account
+* 查询账号创建的见证人
+* 参数: 账号id
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_witness_by_account", "params": ["1.2.7"], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_witness_by_account", ["1.2.7"]], "id": 2}
+  < ...
+```
+* 返回[见证人](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/witness.md)结构
+
+### lookup_witness_accounts
+* 字典序列出打包人账号
+* 参数: 起始字符串，数量
+* 在节点所有已创建的打包人中，按创建账号的账号名排序，获取大于等于起始字符串的给定数量个打包人的id。
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "lookup_witness_accounts", "params": ["a", 10], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "lookup_witness_accounts", ["a", 10]], "id": 2}
+  < ...
+```
+* 返回数组，每个元素是一个二元组，分别为[账号名,打包人id]
+
+### get_witness_count
+* 获取见证人数量
+* 包含活跃见证人和非活跃见证人
+* 参数: 无
+* Http请求例子  
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_witness_count", "params": [], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_witness_count", []], "id": 2}
+  < ...
+```
+
 ## 全局参数
 ### get_chain_properties
 * 获取链的不可变参数，不可变参数由创世区块文件指定，在链的生命周期中不可被改变。
