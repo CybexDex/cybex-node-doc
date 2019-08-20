@@ -43,7 +43,7 @@ wscat -c wss://hongkong.cybex.io
 < {"id":2,"jsonrpc":"2.0","result":[...]}
 ```
 
-## 索引
+## 节点API索引
 * Database API -- 账号、资产、订单簿、币龄
   + [通用](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#通用)
     + [get_objects](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_objects):使用对象id查询对象
@@ -112,5 +112,10 @@ wscat -c wss://hongkong.cybex.io
     + [add_filtered_market](https://github.com/CybexDex/cybex-node-doc/blob/master/api/limit-order-status-api.md#add_filtered_market):设置自定义交易对
     + [get_filtered_limit_order_status](https://github.com/CybexDex/cybex-node-doc/blob/master/api/limit-order-status-api.md#get_filtered_limit_order_status):使用自定义交易对过滤历史订单
     + [clear_filtered_market](https://github.com/CybexDex/cybex-node-doc/blob/master/api/limit-order-status-api.md#clear_filtered_market):清除设置的自定义交易对
+* Network Broadcast API -- 广播交易
+  + [广播交易](https://github.com/CybexDex/cybex-node-doc/blob/master/api/network-broadcast-api.md#广播交易)
+    + [broadcast_transaction](https://github.com/CybexDex/cybex-node-doc/blob/master/api/network-broadcast-api.md#broadcast_transaction):广播交易
+    + [broadcast_transaction_with_callback](https://github.com/CybexDex/cybex-node-doc/blob/master/api/network-broadcast-api.md#broadcast_transaction_with_callback):广播交易并接收异步回调
+    + [broadcast_transaction_synchronous](https://github.com/CybexDex/cybex-node-doc/blob/master/api/network-broadcast-api.md#broadcast_transaction_synchronous):同步广播交易
 
 #### 祝您交易愉快
