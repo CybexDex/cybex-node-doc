@@ -100,5 +100,17 @@ wscat -c wss://hongkong.cybex.io
     + [get_market_history_buckets](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#get_market_history_buckets):查询节点支持的K线种类
     + [get_market_history](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#get_market_history):查询K线
     + [get_fill_order_history](https://github.com/CybexDex/cybex-node-doc/blob/master/api/history-api.md#get_fill_order_history):查询成交明细
+* Limit Order Status API -- 订单明细状态、历史订单状态、自定义交易对订单状态
+  + [历史订单状态](https://github.com/CybexDex/cybex-node-doc/blob/master/api/limit-order-status-api.md#历史订单状态)
+    + [get_limit_order_status](https://github.com/CybexDex/cybex-node-doc/blob/master/api/limit-order-status-api.md#get_limit_order_status):遍历账号的历史订单
+    + [get_market_limit_order_status](https://github.com/CybexDex/cybex-node-doc/blob/master/api/limit-order-status-api.md#get_market_limit_order_status):遍历账号在某交易对下的历史订单
+    + [get_limit_order_id_by_time](https://github.com/CybexDex/cybex-node-doc/blob/master/api/limit-order-status-api.md#get_limit_order_id_by_time):根据时间查询订单号
+  + [当前订单状态](https://github.com/CybexDex/cybex-node-doc/blob/master/api/limit-order-status-api.md#当前订单状态)
+    + [get_opened_limit_order_status](https://github.com/CybexDex/cybex-node-doc/blob/master/api/limit-order-status-api.md#get_opened_limit_order_status):查询账号当前订单
+    + [get_opened_market_limit_order_status](https://github.com/CybexDex/cybex-node-doc/blob/master/api/limit-order-status-api.md#get_opened_market_limit_order_status):查询账号在某交易对下的当前订单
+  + [自定义交易对订单状态](https://github.com/CybexDex/cybex-node-doc/blob/master/api/limit-order-status-api.md#自定义交易对订单状态)
+    + [add_filtered_market](https://github.com/CybexDex/cybex-node-doc/blob/master/api/limit-order-status-api.md#add_filtered_market):设置自定义交易对
+    + [get_filtered_limit_order_status](https://github.com/CybexDex/cybex-node-doc/blob/master/api/limit-order-status-api.md#get_filtered_limit_order_status):使用自定义交易对过滤历史订单
+    + [clear_filtered_market](https://github.com/CybexDex/cybex-node-doc/blob/master/api/limit-order-status-api.md#clear_filtered_market):清除设置的自定义交易对
 
 #### 祝您交易愉快

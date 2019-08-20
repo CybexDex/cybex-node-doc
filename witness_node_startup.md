@@ -95,6 +95,27 @@ market_history
 ./witness_node -d data/ --rpc-endpoint 0.0.0.0:8090 --seed-node 1.1.1.1:5000 --seed-nodes "[\"2.2.2.2:5000\",\"3.3.3.3:5000\"]" --genesis-json genesis.json --plugins "witness market_history" --bucket-size "[60,300,3600]" --history-per-size 1000 --max-order-his-records-per-market 10000 --max-order-his-seconds-per-market 259200
 ```
 
+## 历史订单插件
+本插件用来追溯订单成交状态，并保留一定数量的历史订单，供客户端查询。本插件的数据由limit_order_status_api提供，此API需要在API访问控制配置文件中显式打开，需要在allowed_apis中添加"limit_order_status_api"
+### 插件名
+limit_order_status
+### 插件参数
+* ignore-accounts: 文件名,用来配置不追踪的账号id清单，用于过滤做市商账号
+* order-status-timeout-sec: 历史订单最大保存期限，节点会删除下单时间超出保存期限且已经完成的订单。
+
+### 忽略账号配置文件
+例子:
+```bash
+{
+    "ignores": ["1.2.100", "1.2.200", "1.2.300"]
+}
+```
+### 命令行启动
+```bash
+./witness_node -d data/ --rpc-endpoint 0.0.0.0:8090 --seed-node 1.1.1.1:5000 --seed-nodes "[\"2.2.2.2:5000\",\"3.3.3.3:5000\"]" --genesis-json genesis.json --api-access access.json --plugins "witness limit_order_status" --order-status-timeout-sec 7776000 --ignore-accounts ignores.json
+```
+
+
 ## 快照插件
 本插件用来产生快照文件，需要在节点启动时指定快照的时间点或区块号，当达到指定的快照时间或区块时，节点会在当前运行目录生成一个指定名字的账本全量快照文件。若要产生当前时间之前某个区块或时间的快照，需要在命令行启动时指定--replay-blockchain参数。快照文件详情可参考[获取快照](https://github.com/CybexDex/cybex-node-doc/blob/master/%E8%8E%B7%E5%8F%96%E5%BF%AB%E7%85%A7%E6%96%B9%E6%B3%95.pdf)
 
