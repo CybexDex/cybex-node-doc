@@ -1,5 +1,5 @@
 ## 提现操作
-提现操作可用于将资产从赛贝交易所提现到外部链。在进行提现操作前，需要将转出账户的私钥提前加入Python库的本地钱包中，并解锁钱包。钱包相关操作详见[钱包操作](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/wallet.md)
+提现操作可用于将资产从赛贝交易所提现到外部链。在进行提现操作前，需要将转出账户的私钥提前加入Python库的本地钱包中，并解锁钱包。钱包相关操作详见[钱包操作](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/sdk/python/wallet.md)
 
 #### 1. 提现
 * 瑶池（Jadepool）作为Cybex推荐的网关将为您提供这一服务 

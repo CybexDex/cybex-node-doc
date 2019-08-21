@@ -8,22 +8,22 @@
 
 ## 索引
 *  当您拥有账号和一定数量的赛贝链上资产，您可以使用Python库进行程序化交易。一般来说，您需要先  
-[安装Python环境](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/installation.md)
+[安装Python环境](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/sdk/python/installation.md)
 * 然后  
-[创建钱包](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/wallet.md)
+[创建钱包](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/sdk/python/wallet.md)
 * 在创建完钱包后，您可以尝试  
-[获取账号信息](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/account.md)  
-[获取资产信息](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/asset.md)  
-[获取行情信息](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/market.md)  
+[获取账号信息](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/sdk/python/account.md)  
+[获取资产信息](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/sdk/python/asset.md)  
+[获取行情信息](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/sdk/python/market.md)  
 * 并且在交易市场中  
-[下单](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/order.md)
+[下单](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/sdk/python/order.md)
 * 如果您控制了多个账号，可以通过以下接口进行cybex场内的转账  
-[转账](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/transfer.md)
+[转账](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/sdk/python/transfer.md)
 * 如果您是跨市场交易者，您可以使用以下接口进行跨市场的资产转移  
-[提现](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/withdraw.md)
+[提现](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/sdk/python/withdraw.md)
 * 如果您持有锁定期资产，可以在到期后通过以下方式认领  
-[申领资产](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/balance.md)
+[申领资产](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/sdk/python/balance.md)
 * 更多高级操作  
-[高级操作](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/transaction/python/advanced)
+[高级操作](https://github.com/NebulaCybexDEX/cybex-node-doc/blob/master/sdk/python/advanced)
 
 #### 祝您交易愉快
