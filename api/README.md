@@ -44,7 +44,7 @@ wscat -c wss://hongkong.cybex.io
 ```
 
 ## 节点API索引
-* Database API -- 账号、资产、行情、权限、区块、锁仓、链参数、见证人、理事会成员、币龄
+* Database API -- 账号、资产、持仓、行情、权限、区块、锁仓、链参数、见证人、理事会成员、币龄
   + [通用](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#通用)
     + [get_objects](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_objects):使用对象id查询对象
   + [账户](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#账户)
@@ -60,6 +60,9 @@ wscat -c wss://hongkong.cybex.io
     + [get_assets](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_assets):使用资产id批量查询资产
     + [list_assets](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#list_assets):根据字典序列出资产
     + [lookup_asset_symbols](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#lookup_asset_symbols):使用资产名批量查询资产
+  + [持仓](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#持仓)
+    + [get_account_balances](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_account_balances):根据账号id查询账号持仓
+    + [get_named_account_balances](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_named_account_balances):根据账号名查询账号持仓
   + [行情](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#行情)
     + [get_limit_orders](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_limit_orders):查询订单簿
     + [get_ticker](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_ticker):查询最新行情

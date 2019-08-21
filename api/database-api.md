@@ -208,6 +208,44 @@ wscat -c wss://hongkong.cybex.io
 ```
 * 返回[资产结构](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/asset.md)数组
 
+## 持仓
+持仓API返回的持仓数量仅包含[账户持仓](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/account_balance.md)部分，不包含订单中冻结的资产、锁定期资产、哈希锁定资产等。
+### get_account_balances
+* 根据账号id查询账号持仓
+* 参数: 账号id，资产id列表
+* 若资产id列表为空，则返回账号所有持仓资产列表。
+* Http请求例子
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_account_balances", "params": ["1.2.3", ["1.3.0", "1.3.2"]], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_account_balances", ["1.2.3", ["1.3.0", "1.3.2"]]], "id": 2}
+  < ...
+```
+* 返回数组，数组中的每个元素是二元组，分别为[资产id,持仓数量]
+
+### get_named_account_balances
+* 根据账号名查询账号持仓
+* 参数: 账号名，资产id列表
+* 若资产id列表为空，则返回账号所有持仓资产列表。
+* Http请求例子
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_named_account_balances", "params": ["null-account", ["1.3.0", "1.3.2"]], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_named_account_balances", ["null-account", ["1.3.0", "1.3.2"]]], "id": 2}
+  < ...
+```
+* 返回数组，数组中的每个元素是二元组，分别为[资产id,持仓数量]
+
 ## 行情
 ### get_limit_orders
 * 查询链上订单簿中的订单  
