@@ -44,7 +44,7 @@ wscat -c wss://hongkong.cybex.io
 ```
 
 ## 节点API索引
-* Database API -- 账号、资产、订单簿、币龄
+* Database API -- 账号、资产、行情、权限、区块、锁仓、链参数、见证人、理事会成员、币龄
   + [通用](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#通用)
     + [get_objects](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_objects):使用对象id查询对象
   + [账户](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#账户)
