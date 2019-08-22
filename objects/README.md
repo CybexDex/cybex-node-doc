@@ -6,5 +6,6 @@
 [理事会成员](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/committee_member.md)  
 [见证人](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/witness.md)  
 [订单](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/limit_order.md)  
+[锁定期](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/vesting_balance.md)  
 [持仓](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/account_balance.md)  
 [锁仓](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/htlc.md)

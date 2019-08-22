@@ -246,6 +246,24 @@ wscat -c wss://hongkong.cybex.io
 ```
 * 返回数组，数组中的每个元素是二元组，分别为[资产id,持仓数量]
 
+### get_vesting_balances
+* 根据账号名查询锁定资产
+* Cybex链上有多种资产锁定方式，本API可以查询见证人收益、worker收益、ETO锁定资产。
+* 参数: 账号id
+* Http请求例子
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_vesting_balances", "params": ["1.2.7"]], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_vesting_balances", ["1.2.7"]], "id": 2}
+  < ...
+```
+* 返回[锁定期资产](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/vesting_balance.md)数组
+
 ## 行情
 ### get_limit_orders
 * 查询链上订单簿中的订单  
