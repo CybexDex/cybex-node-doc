@@ -63,6 +63,7 @@ wscat -c wss://hongkong.cybex.io
   + [持仓](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#持仓)
     + [get_account_balances](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_account_balances):根据账号id查询账号持仓
     + [get_named_account_balances](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_named_account_balances):根据账号名查询账号持仓
+    + [get_vesting_balances](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_vesting_balances):根据账号名查询账号的锁定期资产
   + [行情](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#行情)
     + [get_limit_orders](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_limit_orders):查询订单簿
     + [get_ticker](https://github.com/CybexDex/cybex-node-doc/blob/master/api/database-api.md#get_ticker):查询最新行情
