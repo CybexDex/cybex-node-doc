@@ -264,6 +264,61 @@ wscat -c wss://hongkong.cybex.io
 ```
 * 返回[锁定期资产](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/vesting_balance.md)数组
 
+## 哈希时间锁定
+哈希时间锁定，简称HTLC，是链上一种资产锁定方式，锁定方式和数据结构详见[哈希时间锁定](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/htlc.md)
+### get_htlc
+* 根据HTLC id查询HTLC对象
+* 参数: HTLC id
+* Http请求例子
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_htlc", "params": ["1.21.21"]], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_htlc", ["1.21.21"]], "id": 2}
+  < ...
+```
+* 若存在，返回[HTLC](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/htlc.md)对象，若不存在，返回null
+
+### get_htlc_by_from 
+* 列出某账户发出且尚未解锁的HTLC资产
+* 参数: 账号id, HTLC id, 返回记录数量
+* 返回由指定账号发出的，HTLC id大于等于指定id的，尚未解锁的HTLC对象。
+* Http请求例子
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_htlc_by_from", "params": ["1.2.100", "1.21.21", 100]], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_htlc_by_from", ["1.2.100", "1.21.21", 100]], "id": 2}
+  < ...
+```
+* 返回[HTLC](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/htlc.md)对象的数组
+
+### get_htlc_by_to
+* 列出某账户接收且尚未解锁的HTLC资产
+* 参数: 账号id, HTLC id, 返回记录数量
+* 返回由指定账号接收的，HTLC id大于等于指定id的，尚未解锁的HTLC对象。
+* Http请求例子
+```Bash
+curl --data '{"jsonrpc": "2.0", "method": "get_htlc_by_to", "params": ["1.2.100", "1.21.21", 100]], "id": 1}' https://hongkong.cybex.io
+```
+* Websocket请求例子
+```Bash
+wscat -c wss://hongkong.cybex.io
+> {"method": "call", "params": [1, "database", []], "id": 1}
+  < {"id":1,"jsonrpc":"2.0","result":2}
+> {"method": "call", "params": [2, "get_htlc_by_to", ["1.2.100", "1.21.21", 100]], "id": 2}
+  < ...
+```
+* 返回[HTLC](https://github.com/CybexDex/cybex-node-doc/blob/master/objects/htlc.md)对象的数组
+
 ## 行情
 ### get_limit_orders
 * 查询链上订单簿中的订单  
